@@ -1,13 +1,19 @@
 import { addModelToTypegoose, buildSchema, mongoose, prop } from "@typegoose/typegoose";
-import { IsString } from "class-validator";
+import { Exclude, Expose } from "class-transformer";
+import { IsArray, IsEmail, IsString } from "class-validator";
 // import { getModelForClass } from "@typegoose/typegoose";
 
 export class User {
   @prop()
   name: string;
 
+  @IsEmail()
   @prop({ unique: true })
   email: string;
+
+  @Exclude()
+  @prop()
+  password: string;
 
   @prop({ default: false })
   verified: boolean;
@@ -17,6 +23,11 @@ export class User {
 
   @prop({ required: true, default: [] })
   hobbies: mongoose.Types.Array<string>;
+
+  @Expose()
+  get nameEmail(): string {
+    return `${this.name} ${this.email}`;
+  }
 
 }
 
@@ -31,7 +42,13 @@ export const UserModel = addModelToTypegoose(mongoose.model('User', UserSchema),
 export class UserInput {
   @IsString()
   name: string;
-  
-  @IsString()
+
+  @IsEmail()
   email: string;
+
+  @IsString()
+  password: string;
+
+  @IsArray()
+  hobbies: string[]
 }
