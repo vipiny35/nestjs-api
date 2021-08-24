@@ -29,6 +29,7 @@
     "@typegoose/typegoose": "^8.1.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
+    "dotenv": "^10.0.0",
     "mongoose": "^5.13.5",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

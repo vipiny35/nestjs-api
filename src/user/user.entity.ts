@@ -52,3 +52,15 @@ export class UserInput {
   @IsArray()
   hobbies: string[]
 }
+
+export class UserResponse {
+
+  @Expose()
+  name: string;
+
+  @Expose()
+  email: string
+
+  @Expose()
+  hobbies: string[]
+}
